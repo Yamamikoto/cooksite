@@ -1,0 +1,26 @@
+.rating {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #ddd;
+  transition: color 0.2s;
+}
+
+.star:hover {
+  color: #f39c12;
+}
+
+.small {
+  font-size: 1rem;
+}
+
+.medium {
+  font-size: 1.5rem;
+}
+
+.large {
+  font-size: 2rem;
+}

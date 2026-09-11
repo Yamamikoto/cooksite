@@ -1,0 +1,20 @@
+{
+  "name": "cooksite",
+  "compatibility_date": "2024-01-01",
+  "assets": {
+    "directory": "dist"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "cooksite",
+      "database_id": "a5648059-3f56-41ea-a798-d9ed4363fbba"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BUCKET",
+      "bucket_name": "cooksite-assets"
+    }
+  ]
+}

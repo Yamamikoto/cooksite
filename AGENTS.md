@@ -9,8 +9,8 @@
 - **ユーザー認証**: OAuth 2.0 (Google/OAuth Provider)を必須とし、自前でのパスワード管理は行わない。
 
 ## 参照先
-- **行動規範:** `.agent/rules/` を参照してください。
-- **ワークフロー:** `.agent/workflows/` を参照してください。
+- **行動規範:** `.agents/rules/` を参照してください。
+- **ワークフロー:** `.agents/workflows/` を参照してください。
 
 ## work_log.md更新ルール
 毎回の作業後、 `work_log.md` に次の内容を追記してください。

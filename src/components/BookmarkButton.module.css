@@ -1,0 +1,17 @@
+.button {
+  padding: 8px 16px;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  border-color: #aaa;
+}
+
+.bookmarked {
+  border-color: #f39c12;
+  background: #f39c12;
+  color: #fff;
+}

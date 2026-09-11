@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  gap: 16px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  border-color: #aaa;
+}
+
+.goodActive {
+  border-color: #27ae60;
+  background: #27ae60;
+  color: #fff;
+}
+
+.badActive {
+  border-color: #e74c3c;
+  background: #e74c3c;
+  color: #fff;
+}
+
+.count {
+  font-weight: bold;
+}
