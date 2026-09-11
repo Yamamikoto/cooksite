@@ -90,7 +90,7 @@ Phase 8: バグ修正、デプロイ準備、ドキュメント更新
 - .gitignore - Git除外ファイル
 
 ### 更新したファイル
-- unctions/api/reactions/index.js - グッド/バッドボタンのトグル対応
+- functions/api/reactions/index.js - グッド/バッドボタンのトグル対応
 - src/components/GoodBadButton.jsx - サーバーからのvotedフラグを使用
 - src/pages/RecipeDetail.jsx - エラーハンドリング改善、ブックマーク同期
 
@@ -102,10 +102,8 @@ Phase 8: バグ修正、デプロイ準備、ドキュメント更新
 
 
 ### 詳細作業内容
-1. **ビルドテスト**: 
-pm run build 実行 - 成功 (185.96 kB JS, 10.43 kB CSS)
-2. **セットアップチェック**: 
-ode setup.js 実行 - 環境変数とdatabase_idの設定が必要と検出
+1. **ビルドテスト**: `npm run build` 実行 - 成功 (185.96 kB JS, 10.43 kB CSS)
+2. **セットアップチェック**: `node setup.js` 実行 - 環境変数とdatabase_idの設定が必要と検出
 3. **バグ修正**:
    - functions/api/reactions/index.js: グッド/バッドボタンのトグル動作を実装（既存投票の解除・切替）
    - src/components/GoodBadButton.jsx: import/export文が失われていたのを復元 + サーバーからのvotedフラグ使用
@@ -219,4 +217,43 @@ fix: restore corrupted src/pages/HomePage.jsx
 - Restore correct import paths (../components/RecipeCard)
 ```
 
+## 2026-09-10
 
+### 実施テーマ
+本番環境へのデプロイ準備（Git連携）
+
+### 作成したファイル
+- なし
+
+### 更新したファイル
+- なし
+
+### AIが行った作業
+- Gitの状態確認（`git status`, `git remote -v`, `git branch`）
+- 未コミットファイルの確認とステージング（`git add -A`）
+- コミット実行（60 files, 4369 insertions）
+- GitHubへのプッシュ（`git push origin master`）
+- デプロイ準備状況の確認と報告
+
+### 利用者が入力した主な内容
+- ローカル環境でのテストが困難なため、本番環境へのデプロイに移行したい
+- Git連携でのデプロイを選択
+- URLはデフォルトドメイン（cooksite.pages.dev）を使用
+- Google OAuthは既に取得済み
+- D1データベースとR2バケットは既に作成済み
+- R2_SECRET_ACCESS_KEYのみ準備できていない
+
+### 人間が確認すべき点
+1. Cloudflare Pagesダッシュボードでリポジトリを接続し、デプロイ設定を確認
+2. 環境変数（GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET等）をCloudflare Pagesに設定
+3. R2_SECRET_ACCESS_KEYを準備し、環境変数に追加
+4. デプロイが成功したことをcooksite.pages.devで確認
+5. Google Cloud Consoleに本番環境のコールバックURIを登録
+
+### GitHubコミットメッセージ案
+```
+deploy: initial commit for Cloudflare Pages deployment
+
+- Commit all project files for Git-based deployment
+- Push to GitHub for Cloudflare Pages CI/CD
+```
