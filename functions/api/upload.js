@@ -30,7 +30,7 @@ export async function onRequest(context) {
     });
 
     // Get public URL
-    const url = `https://public.r2.cloudflarestorage.com/${filename}`;
+    const url = `${env.R2_PUBLIC_URL}/${filename}`;
 
     return new Response(JSON.stringify({ url }), {
       headers: { 'Content-Type': 'application/json' },

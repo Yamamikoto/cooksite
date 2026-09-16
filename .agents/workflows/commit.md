@@ -2,10 +2,6 @@
 description: コミットメッセージ生成（英語）
 ---
 
----
-description: コミットメッセージ生成（英語）
----
-
 # Commit Message Generator (English)
 
 **Trigger:** `/commit`

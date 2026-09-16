@@ -2,10 +2,6 @@
 description: コミットメッセージ生成（日本語）
 ---
 
----
-description: コミットメッセージ生成（日本語）
----
-
 # Commit Message Generator (日本語)
 
 **トリガー:** `/commit-ja`

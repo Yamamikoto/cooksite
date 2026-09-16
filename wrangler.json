@@ -16,5 +16,8 @@
       "binding": "BUCKET",
       "bucket_name": "cooksite-assets"
     }
-  ]
+  ],
+  "vars": {
+    "R2_PUBLIC_URL": "https://pub-eaf5662ef543be560fee8b63ed8ce49d.r2.dev"
+  }
 }

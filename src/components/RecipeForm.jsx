@@ -23,14 +23,64 @@ function RecipeForm({ recipe, onSubmit, onCancel }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const files = Array.from(e.target.files);
-    setFormData((prev) => ({ ...prev, imageFiles: files }));
+    const newUrls = [];
+
+    for (const file of files) {
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          newUrls.push(data.url);
+        } else {
+          setErrors((prev) => ({ ...prev, image: '画像のアップロードに失敗しました' }));
+        }
+      } catch (error) {
+        console.error('Image upload failed:', error);
+        setErrors((prev) => ({ ...prev, image: '画像のアップロードに失敗しました' }));
+      }
+    }
+
+    if (newUrls.length > 0) {
+      setImages((prev) => [...prev, ...newUrls]);
+    }
   };
 
-  const handleVideoUpload = (e) => {
+  const handleVideoUpload = async (e) => {
     const file = e.target.files[0];
-    setFormData((prev) => ({ ...prev, videoFile: file }));
+    if (!file) return;
+
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setVideoUrl(data.url);
+      } else {
+        setErrors((prev) => ({ ...prev, video: '動画のアップロードに失敗しました' }));
+      }
+    } catch (error) {
+      console.error('Video upload failed:', error);
+      setErrors((prev) => ({ ...prev, video: '動画のアップロードに失敗しました' }));
+    }
+  };
+
+  const removeImage = (index) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSubmit = async (e) => {
@@ -129,7 +179,16 @@ function RecipeForm({ recipe, onSubmit, onCancel }) {
         {images.length > 0 && (
           <div className={styles.imageList}>
             {images.map((url, index) => (
-              <img key={index} src={url} alt={`画像${index + 1}`} />
+              <div key={index} className={styles.imageItem}>
+                <img src={url} alt={`画像${index + 1}`} />
+                <button
+                  type="button"
+                  className={styles.removeButton}
+                  onClick={() => removeImage(index)}
+                >
+                  ×
+                </button>
+              </div>
             ))}
           </div>
         )}

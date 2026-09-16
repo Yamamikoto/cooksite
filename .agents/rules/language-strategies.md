@@ -2,10 +2,6 @@
 trigger: always_on
 ---
 
----
-trigger: always_on
----
-
 # Language Strategies (言語戦略)
 
 - **内部推論 (Internal Reasoning):** 精度を保つため英語が許可/推奨されます。
