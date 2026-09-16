@@ -287,3 +287,92 @@ fix: unify R2 bucket name in .env.local to match wrangler.json
 - Align .env.local with wrangler.json configuration
 ```
 
+
+
+## 2026-09-16
+
+### 実施テーマ
+AGENTS.md の参照先セクションを厳格版に更新
+
+### 作成したファイル
+- なし
+
+### 更新したファイル
+- `AGENTS.md` - 参照先セクションを厳格版（SSoT）に更新
+
+### AI が行った作業
+- `.agents/rules/` と `.agents/workflows/` の全ファイルを読み込み、内容を把握
+- AGENTS.md の参照先セクションを以下のように強化:
+  - タイトルを「参照先（厳守 - SSoT）」に変更
+  - Single Source of Truth としての位置付けを明記
+  - 「必ず読み、厳守してください」と指示を強化
+  - 再確認タイミング（4 つの具体ケース）を明記
+  - 違反時の影響を注意書きとして追加
+
+### 利用者が入力した主な内容
+- `.agents/rules/` と `.agents/workflows/` を次のタスクに移行しても絶対に参照するよう指示する AGENTS.md の内容を依頼
+- 厳格版を希望
+
+### 人間が確認すべき点
+1. AGENTS.md の参照先セクションが正しく更新されたことを確認
+2. 今後のタスクで `.agents/rules/` と `.agents/workflows/` が正しく参照されているか確認
+
+### GitHub コミットメッセージ案
+```
+docs: strengthen .agents/rules and .agents/workflows reference in AGENTS.md
+
+- Change reference section to "参照先（厳守 - SSoT）"
+- Add explicit re-check timing (task switch, file edit, commit, etc.)
+- Mark files as Single Source of Truth with mandatory reference requirement
+- Add warning about impact of not following references
+```
+
+## 2026-09-16
+
+### 実施テーマ
+OAuth コールバック URL の環境変数化、R2 バケット名統一、本番デプロイ
+
+### 作成したファイル
+- なし
+
+### 更新したファイル
+- `.env.local` - R2_BUCKET_NAME を cooksite-assets に統一
+- `functions/api/auth/login.js` - 環境変数 OAUTH_CALLBACK_URL を使用するように変更
+- `functions/api/auth/callback.js` - 環境変数 OAUTH_CALLBACK_URL を使用するように変更
+- `wrangler.json` - 本番環境の OAUTH_CALLBACK_URL を追加
+- `work_log.md` - 作業記録
+
+### AI が行った作業
+1. R2 バケット名の不一致を修正（.env.local → wrangler.json と統一）
+2. login.js と callback.js でハードコーディングされていたコールバック URL を環境変数で管理できるように改善
+3. wrangler.json に本番環境用 OAUTH_CALLBACK_URL を追加
+4. ビルドテスト（`npm run build`）- 成功
+5. Git ステージング・コミット・プッシュ
+6. Cloudflare Pages へのデプロイ - 成功（https://d7ba96be.cooksite.pages.dev）
+
+### 利用者が入力した主な内容
+- R2 バケット名の不一致の修正を指示
+- OAuth の CALLBACK URL が正しいか確認を指示
+- 環境変数を使うように改善を指示
+- デプロイを実行を指示
+
+### 人間が確認すべき点
+1. https://d7ba96be.cooksite.pages.dev にアクセスして動作確認
+2. Google Cloud Console に本番環境のコールバック URI (`https://cooksite.pages.dev/api/auth/callback`) を登録
+3. Cloudflare Pages ダッシュボードの環境変数で、`OAUTH_CALLBACK_URL` を本番用 URL に設定
+4. Google Cloud Console の「承認済みリダイレクト URI」に本番 URL が登録されていることを確認
+
+### GitHub コミットメッセージ案
+```
+fix: use env var for OAuth callback and deploy
+
+- Change R2_BUCKET_NAME from 'recipe-share-assets' to 'cooksite-assets'
+- Update login.js and callback.js to use env.OAUTH_CALLBACK_URL
+- Add OAUTH_CALLBACK_URL to wrangler.json for production
+- Maintain fallback to localhost URL when env var is not set
+
+Deployed to Cloudflare Pages: https://d7ba96be.cooksite.pages.dev
+```
+
+
+
