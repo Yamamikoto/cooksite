@@ -2,7 +2,7 @@
 export async function onRequest(context) {
   const { env, request } = context;
   const url = new URL(request.url);
-  const callbackUrl = `${url.origin}/api/auth/callback`;
+  const callbackUrl = env.OAUTH_CALLBACK_URL || `${url.origin}/api/auth/callback`;
 
   const params = new URLSearchParams({
     client_id: env.GOOGLE_CLIENT_ID,

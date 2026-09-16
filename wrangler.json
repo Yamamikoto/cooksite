@@ -1,23 +1,23 @@
 {
-  "name": "cooksite",
-  "compatibility_date": "2024-01-01",
-  "assets": {
-    "directory": "dist"
-  },
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "cooksite",
-      "database_id": "a5648059-3f56-41ea-a798-d9ed4363fbba"
-    }
-  ],
-  "r2_buckets": [
-    {
-      "binding": "BUCKET",
-      "bucket_name": "cooksite-assets"
-    }
-  ],
-  "vars": {
-    "R2_PUBLIC_URL": "https://pub-eaf5662ef543be560fee8b63ed8ce49d.r2.dev"
-  }
+	"name": "cooksite",
+	"compatibility_date": "2024-01-01",
+	"pages_build_output_dir": "dist",
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "cooksite",
+			"database_id": "e0cb5bdf-4254-4794-98b9-ca678a05f177",
+			"remote": true
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "BUCKET",
+			"bucket_name": "cooksite-assets"
+		}
+	],
+	"vars": {
+		"R2_PUBLIC_URL": "https://pub-eaf5662ef543be560fee8b63ed8ce49d.r2.dev",
+		"OAUTH_CALLBACK_URL": "https://cooksite.pages.dev/api/auth/callback"
+	}
 }

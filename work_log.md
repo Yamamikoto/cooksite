@@ -257,3 +257,33 @@ deploy: initial commit for Cloudflare Pages deployment
 - Commit all project files for Git-based deployment
 - Push to GitHub for Cloudflare Pages CI/CD
 ```
+
+## 2026-09-16
+
+### 実施テーマ
+R2バケット名の不一致修正
+
+### 作成したファイル
+- なし
+
+### 更新したファイル
+- .env.local - R2_BUCKET_NAMEをcooksite-assetsに統一
+
+### AIが行った作業
+- wrangler.jsonと.env.localのR2バケット名の不一致を修正
+- .env.localのR2_BUCKET_NAMEを「cooksite-assets」に統一（wrangler.jsonと一致させる）
+
+### 利用者が入力した主な内容
+- 注意すべき点の3つ目（R2バケット名の不一致）の修正を指示
+
+### 人間が確認すべき点
+1. .env.localとwrangler.jsonのR2バケット名が一致していることを確認（完了）
+
+### GitHubコミットメッセージ案
+```
+fix: unify R2 bucket name in .env.local to match wrangler.json
+
+- Change R2_BUCKET_NAME from 'recipe-share-assets' to 'cooksite-assets'
+- Align .env.local with wrangler.json configuration
+```
+

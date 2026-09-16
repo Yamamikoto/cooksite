@@ -17,7 +17,7 @@ export async function onRequest(context) {
         code,
         client_id: env.GOOGLE_CLIENT_ID,
         client_secret: env.GOOGLE_CLIENT_SECRET,
-        redirect_uri: `${url.origin}/api/auth/callback`,
+        redirect_uri: env.OAUTH_CALLBACK_URL || `${url.origin}/api/auth/callback`,
         grant_type: 'authorization_code',
       }),
     });
